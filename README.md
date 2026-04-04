@@ -73,6 +73,11 @@ python -m backend.scripts.seed_demo
 uvicorn backend.main:app --reload
 ```
 
+Web UI (Phase 1 frontend shell):
+
+- Open `http://127.0.0.1:8000/` in your browser.
+- Login with a demo account and browse patient/archive records without using raw Swagger JSON.
+
 4. Import Synthea CSV files after placing them in a directory such as `data/synthea/`.
 
 Expected files:
