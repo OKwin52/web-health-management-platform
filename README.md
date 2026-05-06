@@ -11,6 +11,7 @@ Implemented scope:
 - Alembic migration setup
 - demo seed script
 - Synthea-style CSV import for medical archive content
+- MIMIC-IV Demo conversion into the same archive CSV import format
 - archive read APIs for encounters, conditions, medications, and observations
 
 Not implemented yet:
@@ -78,7 +79,7 @@ Web UI (Phase 1 frontend shell):
 - Open `http://127.0.0.1:8000/` in your browser.
 - Login with a demo account and browse patient/archive records without using raw Swagger JSON.
 
-4. Import Synthea CSV files after placing them in a directory such as `data/synthea/`.
+4. Import medical archive CSV files after placing them in a directory such as `data/synthea/`.
 
 Expected files:
 
@@ -95,6 +96,31 @@ python -m backend.scripts.import_synthea_csv data/synthea
 ```
 
 The importer is designed to be idempotent. Re-running the same import updates matching records instead of creating uncontrolled duplicates.
+
+### Real EHR replacement with MIMIC-IV Demo
+
+For the real-patient-data replacement path, use the public MIMIC-IV Clinical Database Demo v2.2 as the medical archive source:
+
+- Dataset: https://physionet.org/content/mimic-iv-demo/2.2/
+- DOI: https://doi.org/10.13026/dp1f-ex47
+- Scale: 100 deidentified real patients
+
+After downloading the dataset locally, convert the MIMIC `hosp` tables into the five archive CSV files:
+
+```bash
+python -m backend.scripts.convert_mimic_to_archive_csv data/mimic-iv-demo data/mimic_archive
+python -m backend.scripts.import_synthea_csv data/mimic_archive
+```
+
+The converter maps:
+
+- `hosp/patients` -> `patients.csv`
+- `hosp/admissions` -> `encounters.csv`
+- `hosp/diagnoses_icd` + `hosp/d_icd_diagnoses` -> `conditions.csv`
+- `hosp/prescriptions` -> `medications.csv`
+- `hosp/labevents` + `hosp/d_labitems` -> `observations.csv`
+
+For more detail, see `docs/mimic_data_replacement.md`. Do not commit full MIMIC exports into this repository. The full MIMIC-IV dataset can be used later with the same conversion flow after PhysioNet credentialed access is approved.
 
 5. Verify health check:
 

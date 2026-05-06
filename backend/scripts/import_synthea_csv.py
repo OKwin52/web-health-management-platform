@@ -23,12 +23,12 @@ SUPPORTED_FILES = {
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Import Synthea CSV files into the local database.")
+    parser = argparse.ArgumentParser(description="Import archive CSV files into the local database.")
     parser.add_argument(
         "data_dir",
         nargs="?",
         default="data/synthea",
-        help="Directory containing Synthea CSV files.",
+        help="Directory containing archive CSV files in the Synthea-style layout.",
     )
     return parser.parse_args()
 
@@ -337,7 +337,7 @@ def import_observations(db, csv_path: Path, summary: dict[str, int]) -> None:
 
 
 def print_summary(summary: dict[str, int]) -> None:
-    print("Synthea import summary:")
+    print("Archive CSV import summary:")
     for key in sorted(summary):
         print(f"- {key}: {summary[key]}")
 

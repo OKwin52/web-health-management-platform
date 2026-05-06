@@ -16,6 +16,8 @@
 - [ ] alembic upgrade head succeeds with archive tables
 - [ ] Synthea import script runs successfully
 - [ ] repeated import does not create uncontrolled duplicates
+- [x] MIMIC-IV Demo conversion script added
+- [x] MIMIC-IV data replacement documentation added
 - [ ] imported encounters API works
 - [ ] imported conditions API works
 - [ ] imported medications API works

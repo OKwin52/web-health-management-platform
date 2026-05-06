@@ -1,31 +1,31 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal Health Management</title>
+    <title>个人健康管理平台</title>
     <link rel="stylesheet" href="/frontend/style.css" />
   </head>
   <body>
     <header class="header">
-      <h1>Personal Health Management</h1>
-      <button id="logoutBtn" class="hidden">Logout</button>
+      <h1>个人健康管理平台</h1>
+      <button id="logoutBtn" class="hidden">退出登录</button>
     </header>
 
     <main class="container">
       <section id="loginPanel" class="panel">
-        <h2>Login</h2>
-        <p class="hint">Please login to view patient archive data.</p>
+        <h2>登录</h2>
+        <p class="hint">登录后查看授权范围内的患者健康档案。</p>
         <form id="loginForm">
           <label>
-            Username
+            用户名
             <input id="username" name="username" required placeholder="admin" />
           </label>
           <label>
-            Password
+            密码
             <input id="password" name="password" required type="password" placeholder="admin123" />
           </label>
-          <button type="submit">Sign in</button>
+          <button type="submit">登录</button>
         </form>
         <p id="loginMessage" class="message"></p>
       </section>
@@ -33,26 +33,26 @@
       <section id="dashboard" class="hidden">
         <div class="panel">
           <div class="panel-head">
-            <h2>Patients</h2>
-            <button id="refreshPatientsBtn">Refresh</button>
+            <h2>患者列表</h2>
+            <button id="refreshPatientsBtn">刷新</button>
           </div>
-          <p class="hint">Click one patient to view archive details.</p>
+          <p class="hint">选择患者后查看医疗档案详情。</p>
           <div id="patientsList" class="patient-list"></div>
         </div>
 
         <div class="panel">
-          <h2 id="detailTitle">Patient details</h2>
+          <h2 id="detailTitle">患者详情</h2>
           <div id="patientMeta" class="patient-meta"></div>
 
           <div class="tabs">
-            <button class="tab active" data-resource="encounters">Encounters</button>
-            <button class="tab" data-resource="conditions">Conditions</button>
-            <button class="tab" data-resource="medications">Medications</button>
-            <button class="tab" data-resource="observations">Observations</button>
+            <button class="tab active" data-resource="encounters">就诊记录</button>
+            <button class="tab" data-resource="conditions">诊断记录</button>
+            <button class="tab" data-resource="medications">用药记录</button>
+            <button class="tab" data-resource="observations">检验观察</button>
           </div>
 
           <div id="detailBody" class="detail-body">
-            <p class="hint">Select a patient first.</p>
+            <p class="hint">请先选择一名患者。</p>
           </div>
         </div>
       </section>
